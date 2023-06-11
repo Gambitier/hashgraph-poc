@@ -21,14 +21,11 @@ async function environmentSetup() {
     }
 
     // Create your connection to the Hedera Network
-    const client = Client.forTestnet();
-    client.setOperator(myAccountId, myPrivateKey);
-
-    //Set the default maximum transaction fee (in Hbar)
-    client.setDefaultMaxTransactionFee(new Hbar(100));
-
-    //Set the maximum payment for queries (in Hbar)
-    client.setMaxQueryPayment(new Hbar(50));
+    const client = Client.forTestnet()
+        .setOperator(myAccountId, myPrivateKey)
+        .setDefaultMaxTransactionFee(new Hbar(100))
+        .setMaxQueryPayment(new Hbar(50));
+        
     const myAccountInitialBalance = await getAccountBalance(myAccountId, client);
 
     console.log(
