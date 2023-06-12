@@ -25,7 +25,7 @@ async function environmentSetup() {
         .setOperator(myAccountId, myPrivateKey)
         .setDefaultMaxTransactionFee(new Hbar(100))
         .setMaxQueryPayment(new Hbar(50));
-        
+
     const myAccountInitialBalance = await getAccountBalance(myAccountId, client);
 
     console.log(
@@ -40,7 +40,7 @@ async function environmentSetup() {
     // -------- transaction ----------
     const transactionAmount = 100;
     //Create the transfer transaction
-    const sendHbar = await createNewTransaction(myAccountId, Account1Id, transactionAmount,  client);
+    const sendHbar = await createNewTransaction(myAccountId, Account1Id, transactionAmount, client);
     console.log("\n\n----transaction completeed----\n\n");
 
     //Verify the transaction reached consensus
@@ -53,11 +53,11 @@ async function environmentSetup() {
     return Account1Id;
 }
 
+console.log('\n\n----------------------------')
 environmentSetup()
     .then(accountId => console.log(`\n\nexecution completed`))
     .catch(err => console.error(err));
 
-console.log('\n\n----------------------------')
 
 async function createNewTransaction(fromAccountId, toAccountId, transactionAmount, client) {
     return await new TransferTransaction()
